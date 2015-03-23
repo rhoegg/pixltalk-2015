@@ -1,1 +1,5 @@
-# Specific styles for this site
+/* Specific styles for this site */
+.logo {
+	padding: 10px;
+	height: 45px;
+}
