@@ -6,42 +6,20 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/js/vendor/modernizr.js"></script>
 </head>
 
-<body>
-  <div class="fixed">
-    <nav class="top-bar" data-topbar role="navigation">
-      <ul class="title-area">
-        <li class="name">
-          <!--<h1><a href="#">Pixlfest 2015</a></h1>-->
-          <img src="images/pixlfestlogo-small.png" class="logo"/>
-        </li>
-      </ul>
-      <section class="top-bar-section">
-        <ul class="left">
-          <li class="divider" />
-          <li><img src="images/angularjs-for-header-only.svg" class="logo"/></li>
-        </ul>
-        <!-- Right nav -->
-        <ul class="right">
-          <li class="active"><a href="#">Title Slide</a></li>
-          <li class="divider"></li>
-          <li class="has-dropdown">
-          	<a href="#">Slides</a>
-          	<ul class="dropdown">
-          	  <li class="active"><a href="#">Title Slide</a></li>
-          	  <li><a href="#">Whatever comes next</a></li>
-          	</ul>
-          </li>
-        </ul>
-      </section>
-    </nav>
-  </div>
+<body ng-app="pixltalk2015">
+  <div data-ng-include data-src="'partials/topbar.html'" id="topcontainer"></div>
+  <div data-ng-include data-src="'partials/statspanel.html'"></div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/js/vendor/jquery.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/js/vendor/fastclick.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/js/foundation.min.js"></script>
   
   <script>
     $(document).foundation();
+  </script>
+  <script>
+    angular.module("pixltalk2015", []);
   </script>
 </body>
 </html>

@@ -3,3 +3,18 @@
 	padding: 10px;
 	height: 45px;
 }
+
+#topcontainer {
+	margin-bottom: 45px;
+}
+
+#tweetstats {
+	margin-top: 0.5em;
+}
+
+.statspanel {
+	border: 1px solid orange;
+	border-radius: 5px;
+	background-color: cornsilk;
+	padding: 12px;
+}
