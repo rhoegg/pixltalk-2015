@@ -1,10 +1,11 @@
 <!-- rules -->
-<div id="rules-container" ng-controller="RulesController">
+<div id="rules-container" ng-controller="ChangeRulesController" ng-form name="changeRulesForm">
   <div class="row">
-    <div class="small-10 small-offset-1 columns end">
+    <div class="small-10 small-offset-1 columns end" ng-class="changeRulesForm.magicWord.$invalid ? 'error' : ''">
       <label>Magic Word
-        <input type="text" placeholder="#angularjs" ng-model="rules.magicWord"/>
+        <input type="text" name="magicWord" placeholder="#angularjs" ng-model="rules.magicWord" required="" />
       </label>
+      <small ng-show="changeRulesForm.magicWord.$error.required" class="error">Silence is golden, not magic</small>
     </div>
   </div>
 </div>

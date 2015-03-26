@@ -1,4 +1,4 @@
-angular.module("pixltalk2015").controller("RulesController", function($scope, rulesService) {
+angular.module("pixltalk2015").controller("ChangeRulesController", function($scope, rulesService) {
 	$scope.rules = {
 		magicWord: rulesService.magicWord
 	};

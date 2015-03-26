@@ -43,7 +43,7 @@ angular.module("pixltalk2015").controller("ScoreboardController", function($scop
     	angular.forEach(tweets, function(status, index) {
     		if (status.id > $scope.scoreboard.max_id) {
     			$scope.scoreboard.conferenceTweetCount += 1;
-          if (shouldCount(status.text)) {
+          if (rulesService.shouldCount(status.text)) {
             if (seekingFirst) { // first match is the most recent
               seekingFirst = false;
               $scope.scoreboard.newestTweet = status.text;
@@ -61,13 +61,6 @@ angular.module("pixltalk2015").controller("ScoreboardController", function($scop
     		}
     	});
     	seekingFirst = true;
-  	}
-
-  	function shouldCount(tweetText) {
-  		function escapeRegExp(expression) {
-  			return expression.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-  		}
-		  return new RegExp(escapeRegExp($scope.scoreboard.whatToMatch)).test(tweetText);
   	}
 
   	$http.get("http://cors-anywhere.herokuapp.com/http://gentle-beyond-4243.herokuapp.com/1.1/search/tweets.json?q=%23" + baseSearchTerm + "&count=3&include_entities=0")
