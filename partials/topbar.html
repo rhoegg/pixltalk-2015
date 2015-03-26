@@ -1,8 +1,7 @@
-  <div class="fixed">
+  <div class="fixed" ng-controller="NavController">
     <nav class="top-bar" data-topbar role="navigation">
       <ul class="title-area">
         <li class="name">
-          <!--<h1><a href="#">Pixlfest 2015</a></h1>-->
           <img src="images/pixlfestlogo-small.png" class="logo"/>
         </li>
       </ul>
@@ -13,13 +12,12 @@
         </ul>
         <!-- Right nav -->
         <ul class="right">
-          <li class="active"><a href="#">Title Slide</a></li>
+          <li class="active"><a href="#">{{nav.current.title}}</a></li>
           <li class="divider"></li>
           <li class="has-dropdown">
-          	<a href="#">Slides</a>
+          	<a href="#">Choices</a>
           	<ul class="dropdown">
-          	  <li class="active"><a href="#">Title Slide</a></li>
-          	  <li><a href="#">Whatever comes next</a></li>
+              <li ng-repeat="choice in nav.choices" ng-class="(nav.current.title == choice.title) ? 'active' : ''"><a ng-href="#/{{choice.route}}" ng-click="choose(choice.route)">{{choice.title}}</a></li>
           	</ul>
           </li>
         </ul>
