@@ -1,7 +1,7 @@
 const baseSearchTerm = "javascript";
 
 angular.module("pixltalk2015", [])
-  .controller("TwitterWatcherController", function($scope, $interval, $http) {
+  .controller("ScoreboardController", function($scope, $interval, $http) {
   	$scope.scoreboard = {
   		whatToMatch: "#angularjs",
   		champion: "@rhoegg",
@@ -73,8 +73,6 @@ angular.module("pixltalk2015", [])
   		.success(function(data, status, headers, config) {
   			var result = angular.fromJson(data);
   			$scope.scoreboard.max_id = result.search_metadata.max_id;
-  			$scope.scoreboard.newestTweet = result.statuses[0].text;
-  			$scope.scoreboard.challenger = "@" + result.statuses[0].user.screen_name;
   		});
   	$interval(function(){ $scope.getLatestTweets(); }, 15000);
   });

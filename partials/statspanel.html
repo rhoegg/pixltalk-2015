@@ -1,5 +1,5 @@
   <!-- tweet stats -->
-  <div id="tweetstats" ng-controller="TwitterWatcherController">
+  <div id="tweetstats" ng-controller="ScoreboardController">
     <div class="row">
       <div class="small-3 columns statspanel text-center">
     	  <h4 class="subheader">#pixlfest on Twitter</h4>
@@ -15,7 +15,8 @@
       </div>
       <div class="small-3 columns statspanel text-center">
         <h4 class="subheader">Latest Challenger</h4>
-        <h3>{{scoreboard.challenger}}</h3>
+        <h3 ng-if="scoreboard.challenger">{{scoreboard.challenger}}</h3>
+        <h3 ng-if="!(scoreboard.challenger)" class="come-on"><small>Really, nobody?</small></h3>
       </div>
     </div>
     <div class="row">
