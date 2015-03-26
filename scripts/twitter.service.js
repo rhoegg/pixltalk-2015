@@ -1,6 +1,4 @@
-const baseSearchTerm = "javascript";
-
-angular.module("pixltalk2015").factory("twitterService", function($http) {
+angular.module("pixltalk2015").factory("twitterService", function($http, baseSearchTerm) {
 
   return {
   	getLatestTweets: function(sinceId, next) {

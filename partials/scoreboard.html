@@ -2,12 +2,12 @@
   <div id="tweetstats" ng-controller="ScoreboardController">
     <div class="row" data-equalizer>
       <div class="small-3 columns statspanel text-center" data-equalizer-watch>
-    	  <h4 class="subheader">#pixlfest on Twitter</h4>
+    	  <h4 class="subheader">{{info.baseSearch}} on Twitter</h4>
 	      <h1>{{scoreboard.conferenceTweetCount}}</h1>
       </div>
       <div class="small-3 columns statspanel text-center" data-equalizer-watch>
-		    <h4 class="subheader">#pixlfest {{scoreboard.whatToMatch}}</h4>
-		    <h1>{{scoreboard.angularTweetCount}}</h1>
+		    <h4 class="subheader">{{info.baseSearch}} {{info.whatToMatch}}</h4>
+		    <h1>{{scoreboard.matchedTweetCount}}</h1>
       </div>
       <div id="champion-panel" class="small-3 columns statspanel text-center" data-equalizer-watch>
         <h4 class="subheader">Session Champion</h4>

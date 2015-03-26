@@ -1,1 +1,2 @@
-angular.module("pixltalk2015", []);
+angular.module("pixltalk2015", [])
+	.constant("baseSearchTerm", "javascript");

@@ -1,9 +1,12 @@
-angular.module("pixltalk2015").controller("ScoreboardController", function($scope, $interval, rulesService, twitterService) {
+angular.module("pixltalk2015").controller("ScoreboardController", function($scope, $interval, rulesService, twitterService, baseSearchTerm) {
+    $scope.info = {
+      whatToMatch: rulesService.magicWord,
+      baseSearch: "#" + baseSearchTerm
+    };
   	$scope.scoreboard = {
-  		whatToMatch: rulesService.magicWord,
   		champion: {user: "rhoegg", score: 0, imageUrl: "images/me-wedding-2012.png"},
   		conferenceTweetCount: 0,
-      angularTweetCount: 0,
+      matchedTweetCount: 0,
   		scores: {}
   	};
 
@@ -31,7 +34,7 @@ angular.module("pixltalk2015").controller("ScoreboardController", function($scop
     		if (status.id > $scope.scoreboard.max_id) {
     			$scope.scoreboard.conferenceTweetCount += 1;
           if (rulesService.shouldCount(status.text)) {
-            $scope.scoreboard.angularTweetCount += 1;
+            $scope.scoreboard.matchedTweetCount += 1;
             var score = $scope.scoreboard.scores[status.user.screen_name] || {
               points: 0,
               imageUrl: status.user.profile_image_url
@@ -64,7 +67,7 @@ angular.module("pixltalk2015").controller("ScoreboardController", function($scop
 
     $scope.$watch(function() { return rulesService.magicWord; },
       function(newValue) {
-        $scope.scoreboard.whatToMatch = newValue;
+        $scope.info.whatToMatch = newValue;
       }
     );
 
