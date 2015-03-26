@@ -1,8 +1,8 @@
 const baseSearchTerm = "javascript";
 
-  angular.module("pixltalk2015").controller("ScoreboardController", function($scope, $interval, $http) {
+angular.module("pixltalk2015").controller("ScoreboardController", function($scope, $interval, $http, rulesService) {
   	$scope.scoreboard = {
-  		whatToMatch: "#angularjs",
+  		whatToMatch: rulesService.magicWord,
   		champion: "@rhoegg",
   		challenger: "",
   		conferenceTweetCount: 0,
@@ -41,21 +41,21 @@ const baseSearchTerm = "javascript";
           	angular.forEach(tweets, function(status, index) {
           		if (status.id > $scope.scoreboard.max_id) {
           			$scope.scoreboard.conferenceTweetCount += 1;
+                if ($scope.shouldCount(status.text)) {
+                      if (seekingFirst) { // first match is the most recent
+                        seekingFirst = false;
+                          $scope.scoreboard.newestTweet = status.text;
+                        $scope.scoreboard.challenger = "@" + status.user.screen_name;
+                      }
+                      $scope.scoreboard.angularTweetCount += 1;
+                    var score = $scope.scoreboard.scores[status.user.screen_name] || {
+                      tweets: 0
+                    };
+                    score.tweets = score.tweets + 1;
+                    $scope.scoreboard.scores[status.user.screen_name] = score;
+                }
           		} else {
           			console.log("funny, got an old one: " + status.text);
-          		}
-          		if ($scope.shouldCount(status.text)) {
-                    if (seekingFirst) { // first match is the most recent
-                    	seekingFirst = false;
-              	        $scope.scoreboard.newestTweet = status.text;
-            	        $scope.scoreboard.challenger = "@" + status.user.screen_name;
-                    }
-                    $scope.scoreboard.angularTweetCount += 1;
-          		    var score = $scope.scoreboard.scores[status.user.screen_name] || {
-          			    tweets: 0
-          		    };
-          		    score.tweets = score.tweets + 1;
-          		    $scope.scoreboard.scores[status.user.screen_name] = score;
           		}
           	});
           	seekingFirst = true;

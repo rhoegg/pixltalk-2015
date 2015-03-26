@@ -9,7 +9,7 @@
 <body ng-app="pixltalk2015">
   <div data-ng-include data-src="'partials/topbar.html'" id="topcontainer"></div>
   <div data-ng-include data-src="'partials/statspanel.html'"></div>
-  <div data-ng-include data-src="'partials/rules.html'"></div>
+  <div data-ng-include data-src="'partials/changerules.html'"></div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/js/vendor/jquery.js"></script>
@@ -17,8 +17,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/js/foundation.min.js"></script>
   
   <script src="scripts/pixltalk.js"></script>
+  <script src="scripts/rules.service.js"></script>
   <script src="scripts/scoreboard.controller.js"></script>
-  <script src="scripts/rules.controller.js"></script>
+  <script src="scripts/changerules.controller.js"></script>
   <script>
     $(document).foundation();
   </script>
