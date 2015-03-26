@@ -1,7 +1,7 @@
 angular.module("pixltalk2015").controller("ScoreboardController", function($scope, $interval, rulesService, twitterService) {
   	$scope.scoreboard = {
   		whatToMatch: rulesService.magicWord,
-  		champion: {user: "rhoegg", score: 0},
+  		champion: {user: "rhoegg", score: 0, imageUrl: "images/me-wedding-2012.png"},
   		conferenceTweetCount: 0,
       angularTweetCount: 0,
   		scores: {}

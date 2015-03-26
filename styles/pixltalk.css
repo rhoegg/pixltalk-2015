@@ -15,9 +15,14 @@
 	padding: 12px;
 }
 
+.statspanel img {
+	margin-bottom: 1em;
+}
+
 h3.come-on small {
 	font-style: italic;
 	color: magenta;
+	line-height: 1;
 }
 
 .empty-tweet {

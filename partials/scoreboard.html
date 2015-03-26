@@ -9,17 +9,22 @@
 		    <h4 class="subheader">#pixlfest {{scoreboard.whatToMatch}}</h4>
 		    <h1>{{scoreboard.angularTweetCount}}</h1>
       </div>
-      <div class="small-3 columns statspanel text-center" data-equalizer-watch>
+      <div id="champion-panel" class="small-3 columns statspanel text-center" data-equalizer-watch>
         <h4 class="subheader">Session Champion</h4>
-        <h3>@{{scoreboard.champion.user}}</h3>
-        <div class="success round label score">{{scoreboard.champion.score}}</div>
+        <img ng-src="{{scoreboard.champion.imageUrl}}" width="80" height="80" />
+        <div class="clearfix">
+          <div class="success round label score right">{{scoreboard.champion.score}}</div>
+          <h3 class="left">@{{scoreboard.champion.user}}</h3>
+        </div>
       </div>
-      <div class="small-3 columns statspanel text-center" data-equalizer-watch>
+      <div id="challenger-panel" class="small-3 columns statspanel text-center" data-equalizer-watch>
         <h4 class="subheader">Latest Challenger</h4>
         <div ng-show="scoreboard.challenger">
-          <img ng-src="{{scoreboard.challenger.imageUrl}}" width="80" height="80"/>
-          <h3 ng-show="scoreboard.challenger">@{{scoreboard.challenger.user}}</h3>
-          <div ng-show="scoreboard.challenger" class="round label score">{{scoreboard.challenger.score}}</div>
+          <img ng-src="{{scoreboard.challenger.imageUrl}}" width="80" height="80" />
+          <div class="clearfix">
+            <div ng-show="scoreboard.challenger" class="round label score right">{{scoreboard.challenger.score}}</div>
+            <h3 ng-show="scoreboard.challenger" class="left">@{{scoreboard.challenger.user}}</h3>
+          </div>
         </div>
         <div ng-hide="scoreboard.challenger">
           <img src="images/aykm-meme.png" width="80" height="80"/>
