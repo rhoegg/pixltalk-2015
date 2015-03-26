@@ -7,7 +7,6 @@ angular.module("pixltalk2015").controller("RulesController", function($scope, ru
 	$scope.$watch(function(scope) { return scope.rules.magicWord; },
 		function(newMagicWord) {
 			rulesService.magicWord = newMagicWord;
-			// possibly need $apply here
 		}
 	);
 });
