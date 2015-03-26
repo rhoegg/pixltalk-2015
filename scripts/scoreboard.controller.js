@@ -18,7 +18,7 @@ angular.module("pixltalk2015").controller("ScoreboardController", function($scop
           	angular.forEach($scope.scoreboard.scores, function(score, user) {
           		if (score.points > this.max) {
           			this.max = score.points;
-          			this.winner = { user: user, score: score.points };
+          			this.winner = { user: user, score: score.points, imageUrl: score.imageUrl };
           		}
           	}, context);
           	$scope.scoreboard.champion = context.winner;

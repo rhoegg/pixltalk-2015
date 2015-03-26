@@ -19,6 +19,10 @@
 	margin-bottom: 1em;
 }
 
+.statspanel h1 {
+	font-size: 64pt;
+}
+
 h3.come-on small {
 	font-style: italic;
 	color: magenta;
