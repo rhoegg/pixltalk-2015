@@ -36,13 +36,15 @@ angular.module("pixltalk2015").controller("ScoreboardController", function($scop
               points: 0,
               imageUrl: status.user.profile_image_url
             };
-            score.points = score.points + 1;
-            $scope.scoreboard.scores[status.user.screen_name] = score;
-            if (seekingFirst) { // first match is the most recent
-              seekingFirst = false;
-              $scope.scoreboard.newestTweet = status.text;
-              $scope.scoreboard.challenger = { user: status.user.screen_name, score: score.points, imageUrl: score.imageUrl };
-            }
+            rulesService.score(status.text, function(points) {
+              score.points = score.points + points;
+              $scope.scoreboard.scores[status.user.screen_name] = score;
+              if (seekingFirst) { // first match is the most recent
+                seekingFirst = false;
+                $scope.scoreboard.newestTweet = status.text;
+                $scope.scoreboard.challenger = { user: status.user.screen_name, score: score.points, imageUrl: score.imageUrl };
+              }
+            });
           }
     		} else {
     			console.log("funny, got an old one: " + status.text);

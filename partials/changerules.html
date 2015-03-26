@@ -1,11 +1,21 @@
 <!-- rules -->
 <div id="rules-container" ng-controller="ChangeRulesController" ng-form name="changeRulesForm">
   <div class="row">
-    <div class="small-10 small-offset-1 columns end" ng-class="changeRulesForm.magicWord.$invalid ? 'error' : ''">
+    <div id="changeMagicWord" class="small-10 small-offset-1 columns end" ng-class="changeRulesForm.magicWord.$invalid ? 'error' : ''">
       <label>Magic Word
         <input type="text" name="magicWord" placeholder="#angularjs" ng-model="rules.magicWord" required="" />
       </label>
       <small ng-show="changeRulesForm.magicWord.$error.required" class="error">Silence is golden, not magic</small>
+    </div>
+  </div>
+  <div class="row">
+    <div id="changeExclamationBonus" class="small-10 small-offset-1 columns end">
+      <label>Exclamation Point Bonus</label>
+      <ul class="button-group round even-3">
+        <li><a href="#" class="button" ng-class="exclamationBonusButton('none')" ng-click="setExclamationBonus('none')">None</a></li>
+        <li><a href="#" class="button" ng-class="exclamationBonusButton('one')" ng-click="setExclamationBonus('one')">One</a></li>
+        <li><a href="#" class="button" ng-class="exclamationBonusButton('each')" ng-click="setExclamationBonus('each')">One Each</a></li>
+      </ul>
     </div>
   </div>
 </div>
