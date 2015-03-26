@@ -1,23 +1,11 @@
-const baseSearchTerm = "javascript";
-
-angular.module("pixltalk2015").controller("ScoreboardController", function($scope, $interval, $http, rulesService) {
+angular.module("pixltalk2015").controller("ScoreboardController", function($scope, $interval, rulesService, twitterService) {
   	$scope.scoreboard = {
   		whatToMatch: rulesService.magicWord,
   		champion: "@rhoegg",
   		challenger: "",
   		conferenceTweetCount: 0,
-        angularTweetCount: 0,
-  		newestTweet: "Fell asleep for a few minutes listening to @rhoegg talk about #angularjs at #pixlfest",
+      angularTweetCount: 0,
   		scores: {}
-  	};
-
-  	$scope.getLatestTweets = function() {
-  		var url = "http://cors-anywhere.herokuapp.com/http://gentle-beyond-4243.herokuapp.com/1.1/search/tweets.json?q=%23" + baseSearchTerm + "&count=100&include_entities=0&since_id=" + $scope.scoreboard.max_id;
-  		console.log("refreshing with " + url);
-        $http.get(url)
-          .success(function(data, status, headers, config) {
-          	updateScoreboard(angular.fromJson(data));
-          });
   	};
 
   	function updateScoreboard(twitterResults) {
@@ -63,16 +51,19 @@ angular.module("pixltalk2015").controller("ScoreboardController", function($scop
     	seekingFirst = true;
   	}
 
-  	$http.get("http://cors-anywhere.herokuapp.com/http://gentle-beyond-4243.herokuapp.com/1.1/search/tweets.json?q=%23" + baseSearchTerm + "&count=3&include_entities=0")
-  		.success(function(data, status, headers, config) {
-  			var result = angular.fromJson(data);
-  			$scope.scoreboard.max_id = result.search_metadata.max_id;
-  		});
-  	$interval(function(){ $scope.getLatestTweets(); }, 15000);
+    twitterService.getLatestTweetId(function(id) {
+      $scope.scoreboard.max_id = id;
+      console.log("Using latest tweet id: " + $scope.scoreboard.max_id);
+    });
+
+  	$interval(function(){
+      twitterService.getLatestTweets($scope.scoreboard.max_id, updateScoreboard);
+    }, 15000);
 
     $scope.$watch(function() { return rulesService.magicWord; },
       function(newValue) {
         $scope.scoreboard.whatToMatch = newValue;
       }
     );
+
   });
