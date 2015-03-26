@@ -1,7 +1,6 @@
 const baseSearchTerm = "javascript";
 
-angular.module("pixltalk2015", [])
-  .controller("ScoreboardController", function($scope, $interval, $http) {
+  angular.module("pixltalk2015").controller("ScoreboardController", function($scope, $interval, $http) {
   	$scope.scoreboard = {
   		whatToMatch: "#angularjs",
   		champion: "@rhoegg",
