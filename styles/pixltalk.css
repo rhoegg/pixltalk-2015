@@ -4,10 +4,6 @@
 	height: 45px;
 }
 
-#topcontainer {
-	margin-bottom: 45px;
-}
-
 #tweetstats {
 	margin-top: 0.5em;
 }
@@ -22,4 +18,8 @@
 h3.come-on small {
 	font-style: italic;
 	color: magenta;
+}
+
+.empty-tweet {
+	font-style: italic;
 }

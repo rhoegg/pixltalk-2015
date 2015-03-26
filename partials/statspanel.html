@@ -1,27 +1,30 @@
   <!-- tweet stats -->
   <div id="tweetstats" ng-controller="ScoreboardController">
-    <div class="row">
-      <div class="small-3 columns statspanel text-center">
+    <div class="row" data-equalizer>
+      <div class="small-3 columns statspanel text-center" data-equalizer-watch>
     	  <h4 class="subheader">#pixlfest on Twitter</h4>
 	      <h1>{{scoreboard.conferenceTweetCount}}</h1>
       </div>
-      <div class="small-3 columns statspanel text-center">
+      <div class="small-3 columns statspanel text-center" data-equalizer-watch>
 		    <h4 class="subheader">#pixlfest {{scoreboard.whatToMatch}}</h4>
 		    <h1>{{scoreboard.angularTweetCount}}</h1>
       </div>
-      <div class="small-3 columns statspanel text-center">
+      <div class="small-3 columns statspanel text-center" data-equalizer-watch>
         <h4 class="subheader">Session Champion</h4>
         <h3>{{scoreboard.champion}}</h3>
       </div>
-      <div class="small-3 columns statspanel text-center">
+      <div class="small-3 columns statspanel text-center" data-equalizer-watch>
         <h4 class="subheader">Latest Challenger</h4>
         <h3 ng-if="scoreboard.challenger">{{scoreboard.challenger}}</h3>
         <h3 ng-if="!(scoreboard.challenger)" class="come-on"><small>Really, nobody?</small></h3>
       </div>
     </div>
     <div class="row">
-      <div class="small-12 columns panel callout radius text-center">
+      <div class="small-12 columns panel callout radius text-center" ng-show="scoreboard.newestTweet">
         {{scoreboard.newestTweet}}
+      </div>
+      <div class="small-12 columns panel radius text-center empty-tweet" ng-hide="scoreboard.newestTweet">
+        Fell asleep for a few minutes listening to @rhoegg talk about #angularjs at #pixlfest
       </div>
     </div>
   </div>
