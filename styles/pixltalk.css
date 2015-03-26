@@ -23,3 +23,7 @@ h3.come-on small {
 .empty-tweet {
 	font-style: italic;
 }
+
+.score {
+	font-size: 150%;
+}

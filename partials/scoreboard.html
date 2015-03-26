@@ -11,12 +11,20 @@
       </div>
       <div class="small-3 columns statspanel text-center" data-equalizer-watch>
         <h4 class="subheader">Session Champion</h4>
-        <h3>{{scoreboard.champion}}</h3>
+        <h3>@{{scoreboard.champion.user}}</h3>
+        <div class="success round label score">{{scoreboard.champion.score}}</div>
       </div>
       <div class="small-3 columns statspanel text-center" data-equalizer-watch>
         <h4 class="subheader">Latest Challenger</h4>
-        <h3 ng-if="scoreboard.challenger">{{scoreboard.challenger}}</h3>
-        <h3 ng-if="!(scoreboard.challenger)" class="come-on"><small>Really, nobody?</small></h3>
+        <div ng-show="scoreboard.challenger">
+          <img ng-src="{{scoreboard.challenger.imageUrl}}" width="80" height="80"/>
+          <h3 ng-show="scoreboard.challenger">@{{scoreboard.challenger.user}}</h3>
+          <div ng-show="scoreboard.challenger" class="round label score">{{scoreboard.challenger.score}}</div>
+        </div>
+        <div ng-hide="scoreboard.challenger">
+          <img src="images/aykm-meme.png" width="80" height="80"/>
+          <h3 ng-hide="scoreboard.challenger" class="come-on"><small>Really, nobody?</small></h3>
+        </div>
       </div>
     </div>
     <div class="row">

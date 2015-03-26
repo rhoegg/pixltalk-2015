@@ -1,8 +1,7 @@
 angular.module("pixltalk2015").controller("ScoreboardController", function($scope, $interval, rulesService, twitterService) {
   	$scope.scoreboard = {
   		whatToMatch: rulesService.magicWord,
-  		champion: "@rhoegg",
-  		challenger: "",
+  		champion: {user: "rhoegg", score: 0},
   		conferenceTweetCount: 0,
       angularTweetCount: 0,
   		scores: {}
@@ -15,14 +14,14 @@ angular.module("pixltalk2015").controller("ScoreboardController", function($scop
           	
             $scope.scoreboard.max_id = twitterResults.search_metadata.max_id;
           	
-            var context = { max: 0, winner: "rhoegg" };
+            var context = { max: 0, winner: $scope.scoreboard.champion };
           	angular.forEach($scope.scoreboard.scores, function(score, user) {
-          		if (score.tweets > this.max) {
-          			this.max = score.tweets;
-          			this.winner = user;
+          		if (score.points > this.max) {
+          			this.max = score.points;
+          			this.winner = { user: user, score: score.points };
           		}
           	}, context);
-          	$scope.scoreboard.champion = "@" + context.winner;
+          	$scope.scoreboard.champion = context.winner;
   		}
   	}
 
@@ -32,17 +31,18 @@ angular.module("pixltalk2015").controller("ScoreboardController", function($scop
     		if (status.id > $scope.scoreboard.max_id) {
     			$scope.scoreboard.conferenceTweetCount += 1;
           if (rulesService.shouldCount(status.text)) {
+            $scope.scoreboard.angularTweetCount += 1;
+            var score = $scope.scoreboard.scores[status.user.screen_name] || {
+              points: 0,
+              imageUrl: status.user.profile_image_url
+            };
+            score.points = score.points + 1;
+            $scope.scoreboard.scores[status.user.screen_name] = score;
             if (seekingFirst) { // first match is the most recent
               seekingFirst = false;
               $scope.scoreboard.newestTweet = status.text;
-              $scope.scoreboard.challenger = "@" + status.user.screen_name;
+              $scope.scoreboard.challenger = { user: status.user.screen_name, score: score.points, imageUrl: score.imageUrl };
             }
-            $scope.scoreboard.angularTweetCount += 1;
-            var score = $scope.scoreboard.scores[status.user.screen_name] || {
-              tweets: 0
-            };
-            score.tweets = score.tweets + 1;
-            $scope.scoreboard.scores[status.user.screen_name] = score;
           }
     		} else {
     			console.log("funny, got an old one: " + status.text);
