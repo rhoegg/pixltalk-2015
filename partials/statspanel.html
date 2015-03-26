@@ -1,26 +1,26 @@
   <!-- tweet stats -->
-  <div id="tweetstats">
+  <div id="tweetstats" ng-controller="TwitterWatcherController">
     <div class="row">
       <div class="small-3 columns statspanel text-center">
-		<h4 class="subheader">#pixlfest on Twitter</h4>
-		<h1>37</h1>
+    	  <h4 class="subheader">#pixlfest on Twitter</h4>
+	      <h1>{{scoreboard.conferenceTweetCount}}</h1>
       </div>
       <div class="small-3 columns statspanel text-center">
-		<h4 class="subheader">#pixlfest #angularjs</h4>
-		<h1>9</h1>
+		    <h4 class="subheader">#pixlfest #angularjs</h4>
+		    <h1>{{scoreboard.angularTweetCount}}</h1>
       </div>
       <div class="small-3 columns statspanel text-center">
-		<h4 class="subheader">Session Champion</h4>
-		<h1>@rhoegg</h1>
+        <h4 class="subheader">Session Champion</h4>
+        <h3>{{scoreboard.champion}}</h3>
       </div>
       <div class="small-3 columns statspanel text-center">
-		<h4 class="subheader">Latest Challenger</h4>
-		<h1>@PixlCrew</h1>
+        <h4 class="subheader">Latest Challenger</h4>
+        <h3>{{scoreboard.challenger}}</h3>
       </div>
     </div>
     <div class="row">
       <div class="small-12 columns panel callout radius text-center">
-        Fell asleep for a few minutes listening to @rhoegg talk about #angularjs at #pixlfest
+        {{scoreboard.newestTweet}}
       </div>
     </div>
   </div>
